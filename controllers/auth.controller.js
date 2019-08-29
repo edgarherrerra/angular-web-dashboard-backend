@@ -7,6 +7,7 @@ exports.signup = (req, res, next) => {
     .catch(err => res.status(500).json({ err }))
 }
 
+// Cuando hacemos login el servidor envia cookies al frontend para poder hacer validación con las rutas.
 exports.login = (req, res, next) => {
   const [header, payload, signature] = signToken(req.user)
   res.cookie('headload', `${header}.${payload}.`, {})
@@ -14,8 +15,9 @@ exports.login = (req, res, next) => {
   res.status(200).json({ user: req.user })
 }
 
+// Cuando hacemos logout eliminamos las cookies.
 exports.logout = (req, res, next) => {
   res.clearCookie('headload')
   res.clearCookie('signature')
-  res.status(200).json({ message: 'Goodbye!' })
+  res.status(200).json({ message: 'Logout!' })
 }

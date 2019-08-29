@@ -6,7 +6,13 @@ const userSchema = new Schema(
     username: {
       type: String,
       required: true
-    }
+    },
+    todos: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Todo"
+      }
+    ]
   },
   {
     timestamps: {

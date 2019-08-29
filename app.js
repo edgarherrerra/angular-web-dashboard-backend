@@ -8,6 +8,7 @@ const cors = require('cors')
 const passport = require('./config/passport')
 const index = require('./routes/index')
 const authRoutes = require('./routes/auth.routes')
+const todoCategories = require('./routes/todo.routes')
 const app = express()
 
 // Estableciendo conexión con la base de datos.
@@ -34,6 +35,7 @@ app.use(cors({
 // Ruta Home.
 app.use('/', index)
 app.use('/', authRoutes)
+app.use('/todo', todoCategories)
 
 // Servidor iniciado.
 app.listen(process.env.PORT, () => {
