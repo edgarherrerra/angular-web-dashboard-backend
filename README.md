@@ -18,3 +18,7 @@ Puedes encontrar el Frontend de la aplicación dando click [Aquí.](https://gith
 ## Herramientas para probar solo el Backend.
 * Postman.
 * MongoDB Compass.
+
+## Notas
+* Se necesita tener instalado MongoDB de forma local.
+* Versión de Mongo: MongoDB shell version v4.0.10
