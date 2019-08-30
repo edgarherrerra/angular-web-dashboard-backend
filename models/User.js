@@ -12,6 +12,12 @@ const userSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: "Todo"
       }
+    ],
+    cards: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Card"
+      }
     ]
   },
   {

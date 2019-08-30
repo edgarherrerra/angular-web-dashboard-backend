@@ -7,7 +7,7 @@ exports.createTodo = async (req, res, next) => {
   const id = req.user._id
   try {
     const todo = await Todo.create({ ...req.body })
-    await User.findByIdAndUpdate(id, { $push: { todos: todo._id } }, { new: true })
+    await User.findByIdAndUpdate(id, { $push: { todos: todo._id } }, { new: true, useFindAndModify: false })
     res.status(201).json({ todo })
   }
   catch (err) {
@@ -23,7 +23,7 @@ exports.deleteTodo = async (req, res, next) => {
   const id = req.params.id
   try {
     const todoDeleted = await Todo.findByIdAndDelete(id)
-    await User.findByIdAndUpdate(idUser, { $pull: { todos: id } }, { new: true })
+    await User.findByIdAndUpdate(idUser, { $pull: { todos: id } }, { new: true, useFindAndModify: false })
     res.status(201).json({ todoDeleted, msg: "Deleted!" })
   } catch (error) {
     res.status(500).json({ error })
@@ -35,7 +35,7 @@ exports.updateTodo = async (req, res, next) => {
   const { id } = req.params
 
   try {
-    const updatedTodo = await Todo.findByIdAndUpdate(id, { ...req.body }, { new: true })
+    const updatedTodo = await Todo.findByIdAndUpdate(id, { ...req.body }, { new: true, useFindAndModify: false })
     res.status(201).json({ updatedTodo })
   } catch (error) {
     res.status(500).json({ error })
