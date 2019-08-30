@@ -16,6 +16,17 @@ exports.createCard = async (req, res, next) => {
 }
 
 
+// Obtener una tarjeta por su id.
+exports.getOneCard = async (req, res, next) => {
+  const id = req.params.id
+  try {
+    const card = await Card.findById(id)
+    res.status(201).json({ card, msg: "done!" })
+  } catch (error) {
+    res.status(500).json({ error })
+  }
+}
+
 
 // Eliminando una tarjeta. Cuando la eliminamos también se elimina la referencia en el Usuario.
 exports.deleteCard = async (req, res, next) => {

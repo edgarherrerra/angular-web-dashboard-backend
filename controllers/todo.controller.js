@@ -15,6 +15,16 @@ exports.createTodo = async (req, res, next) => {
   }
 }
 
+// Obtener un todo por su id.
+exports.getOneTodo = async (req, res, next) => {
+  const id = req.params.id
+  try {
+    const todo = await Todo.findById(id)
+    res.status(201).json({ todo, msg: "done!" })
+  } catch (error) {
+    res.status(500).json({ error })
+  }
+}
 
 
 // Eliminando una tarea. Cuando la eliminamos también se elimina la referencia en el Usuario.
